@@ -23,7 +23,7 @@ const addImageDimensions: Plugin<[options?: Options], undefined> = ({
     visit(tree, "element", (node: Element) => {
       promises.push(
         queue.add(async () => {
-          const props = node.properties ?? {}
+          const props = (node.properties ??= {})
           const src = props.src as string | undefined
           if (
             !src ||
